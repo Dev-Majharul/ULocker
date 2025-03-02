@@ -1,7 +1,9 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 
 @layer base {
@@ -115,7 +117,36 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    color-scheme: dark;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground ;
+  }
+  
+}
+
+/* Cyberpunk Text Style */
+.cyberpunk-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+  color: #00ff99;  /* Classic cyberpunk neon green */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle glowing effect */
+}
+
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.8);
   }
 }
+
