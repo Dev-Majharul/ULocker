@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -122,7 +121,10 @@
   }
   
   body {
-    @apply bg-background text-foreground ;
+    @apply bg-background text-foreground;
+    background-image: radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+                     radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
   }
   
 }
@@ -134,19 +136,270 @@
   color: #00ff99;  /* Classic cyberpunk neon green */
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle glowing effect */
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3); /* Enhanced glowing effect */
+  animation: textPulse 8s infinite alternate;
 }
 
-
+/* Enhanced Glitch Animation */
 @keyframes glitch {
   0% {
     text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.8);
+    transform: translate(0);
   }
-  50% {
+  20% {
     text-shadow: 0 0 10px rgba(255, 0, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.8);
+  }
+  21% {
+    text-shadow: none;
+    transform: translate(-1px, 1px);
+  }
+  23% {
+    text-shadow: none;
+    transform: translate(1px, -1px);
+  }
+  24% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.8);
+    transform: translate(0);
+  }
+  80% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.8);
+    transform: translate(0);
+  }
+  81% {
+    text-shadow: none;
+    transform: translate(2px, 1px);
+  }
+  83% {
+    text-shadow: none;
+    transform: translate(-2px, -1px);
+  }
+  84% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.8);
+    transform: translate(0);
   }
   100% {
     text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 15px rgba(0, 255, 255, 0.8);
+    transform: translate(0);
+  }
+}
+
+/* Text pulse animation */
+@keyframes textPulse {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 7px rgba(0, 255, 153, 0.7), 0 0 14px rgba(0, 255, 153, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+}
+
+/* Pulse animation for dots */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.6;
+  }
+}
+
+/* Scanner effect */
+@keyframes scanner {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Apply scanner effect to the whole app */
+.scanner-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.scanner-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, 
+              transparent, 
+              rgba(0, 255, 255, 0.2) 20%, 
+              rgba(0, 255, 255, 0.2) 80%, 
+              transparent);
+  animation: scanner 8s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+/* Cyberpunk button hover effect */
+.cyberpunk-button-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cyberpunk-button-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.cyberpunk-button-hover:hover::before {
+  left: 100%;
+}
+
+/* Holographic card effect */
+.holographic-card {
+  position: relative;
+  overflow: hidden;
+  background-image: 
+    linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+  transition: all 0.3s ease;
+}
+
+.holographic-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(0, 255, 255, 0.1) 25%,
+    transparent 50%,
+    rgba(255, 0, 255, 0.1) 75%,
+    transparent 100%
+  );
+  transform: rotate(30deg);
+  animation: holographicMove 6s linear infinite;
+}
+
+@keyframes holographicMove {
+  0% {
+    transform: rotate(0deg) translateX(-50%);
+  }
+  100% {
+    transform: rotate(360deg) translateX(-50%);
+  }
+}
+
+/* Matrix code rain effect for special sections */
+.matrix-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.matrix-rain .drop {
+  position: absolute;
+  width: 2px;
+  color: #0f0;
+  opacity: 0;
+  font-family: monospace;
+  animation: matrixDrop 2s linear forwards;
+}
+
+@keyframes matrixDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(calc(100vh + 20px));
+  }
+}
+
+/* Cyberpunk border glow effect */
+.cyber-border-glow {
+  position: relative;
+}
+
+.cyber-border-glow::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff, #ff00ff);
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-border-glow:hover::after {
+  opacity: 0.7;
+}
+
+/* Grid background with animating lines */
+.cyber-grid-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-grid-bg::before,
+.cyber-grid-bg::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: -1;
+}
+
+.cyber-grid-bg::before {
+  background-image: 
+    linear-gradient(transparent 0px, transparent calc(100% - 1px), rgba(0, 255, 255, 0.2) 100%),
+    linear-gradient(90deg, transparent 0px, transparent calc(100% - 1px), rgba(255, 0, 255, 0.2) 100%);
+  background-size: 30px 30px;
+  animation: gridMove 15s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(1deg) scale(1.1);
   }
 }
 
